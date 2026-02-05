@@ -5,8 +5,8 @@ async function main() {
   try {
     const user = await auth.api.signUpEmail({
       body: {
-        email: "admin@motoguro.com",
-        password: "password123",
+        email: "admin@motoguro.tech",
+        password: "barbara321",
         name: "Admin",
       },
     });

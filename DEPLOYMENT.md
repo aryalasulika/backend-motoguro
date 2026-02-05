@@ -201,3 +201,76 @@ Ikuti instruksi di layar. Certbot akan otomatis mengupdate konfigurasi Nginx And
 ---
 
 **Selesai!** Backend Anda sekarang seharusnya sudah berjalan di `https://api.yourdomain.com`.
+
+---
+
+# Alternatif: Deployment ke Vercel
+
+Vercel adalah platform serverless yang sangat mudah digunakan dan mendukung Node.js.
+
+## 1. Persiapan Project
+
+Pastikan file `vercel.json` sudah ada di root folder project backend Anda. File ini mengatur agar semua request diarahkan ke `src/index.ts` (yang akan dijalankan sebagai serverless function).
+
+```json
+{
+  "version": 2,
+  "builds": [
+    {
+      "src": "src/index.ts",
+      "use": "@vercel/node"
+    }
+  ],
+  "routes": [
+    {
+      "src": "/(.*)",
+      "dest": "src/index.ts"
+    }
+  ]
+}
+```
+
+## 2. Install Vercel CLI
+
+```bash
+npm install -g vercel
+```
+
+## 3. Login ke Vercel
+
+```bash
+vercel login
+```
+
+Ikuti instruksi untuk login via browser.
+
+## 4. Deploy Project
+
+Jalankan perintah berikut di root folder backend:
+
+```bash
+vercel
+```
+
+- **Set up and deploy?** [Y/n]: `y`
+- **Which scope?**: Pilih akun Anda.
+- **Link to existing project?** [y/N]: `n` (jika pertama kali)
+- **Project name**: `motoguro-backend` (atau nama lain)
+- **In which directory is your code located?**: `./` (default)
+- **Want to modify these settings?** [y/N]: `n` (Gunakan default karena kita sudah punya `vercel.json`)
+
+## 5. Konfigurasi Environment Variables
+
+Setelah create project, Anda perlu memasukkan Environment Variables (`.env`) ke dashboard Vercel.
+
+1. Buka Dashboard Vercel project Anda.
+2. Ke tab **Settings** > **Environment Variables**.
+3. Tambahkan variable:
+   - `DATABASE_URL`: URL Supabase (Connection Pooler `Session Mode` disarankan).
+   - `BETTER_AUTH_SECRET`: Secret key Anda.
+   - `BETTER_AUTH_BASE_URL`: URL Project Vercel Anda (setelah deploy pertama, misal `https://motoguro-backend.vercel.app`).
+4. Redeploy (Wajib) agar Env Var aktif. Bisa via dashboard (Deployments > Redeploy) atau command `vercel --prod`.
+
+## 6. Selesai
+
+Backend Anda siap digunakan di URL yang diberikan Vercel.
