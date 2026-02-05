@@ -7,7 +7,7 @@ async function main() {
   try {
     // 1. Get Admin User
     const adminUser = await db.query.user.findFirst({
-        where: eq(user.email, "admin@motoguro.com")
+        where: eq(user.email, "admin@motoguro.tech")
     });
 
     if (!adminUser) {

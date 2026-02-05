@@ -18,7 +18,16 @@ export const auth = betterAuth({
   emailAndPassword: {
     enabled: true,
   },
-  trustedOrigins: ["http://localhost:5173", "http://localhost:5174"]
+  trustedOrigins: ["http://localhost:5173", "http://localhost:5174"],
+  advanced: {
+    crossSubDomainCookies: {
+      enabled: true
+    },
+    defaultCookieAttributes: {
+      sameSite: "none",
+      secure: true
+    }
+  }
 });
 
 export { db };
