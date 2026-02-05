@@ -1,5 +1,5 @@
 import "dotenv/config";
-import { auth } from "./src/auth";
+import { auth } from "./src/auth.js";
 
 async function main() {
   try {

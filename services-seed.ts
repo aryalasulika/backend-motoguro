@@ -1,6 +1,6 @@
 import "dotenv/config";
-import { db } from "./src/auth";
-import { services } from "./src/db/schema";
+import { db } from "./src/auth.js";
+import { services } from "./src/db/schema.js";
 
 async function main() {
   try {

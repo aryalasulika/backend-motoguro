@@ -2,8 +2,8 @@ import "dotenv/config";
 import express from "express";
 import cors from "cors";
 import { toNodeHandler } from "better-auth/node";
-import { auth, db } from "./auth";
-import { transactions, services } from "./db/schema";
+import { auth, db } from "./auth.js";
+import { transactions, services } from "./db/schema.js";
 import { eq, desc } from "drizzle-orm";
 
 const app = express();

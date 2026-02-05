@@ -1,6 +1,6 @@
 import "dotenv/config";
-import { db } from "./src/auth";
-import { transactions, user } from "./src/db/schema";
+import { db } from "./src/auth.js";
+import { transactions, user } from "./src/db/schema.js";
 import { eq } from "drizzle-orm";
 
 async function main() {
